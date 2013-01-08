@@ -1,11 +1,4 @@
-'''Project steps:
-#First of all we provide a human ensembl gene ID and some species we are interested in. After that the script will gather the ortholog gene ID from ensembl database for those species.
-
-#Then for each gene it will download all the proteins coded by those genes. This information will be stored in a hierarchichal structure.
-
-#From the protein length we have to select the most suitable combinations and align them. We will use MAFFT (or PRANK) for that purpose.
-
-#We need a hierarchical list/dict class structure
+'''
 #One specie have several genes, one gene several proteins and one protein corresponds to one transcript.
 '''
 import csv
