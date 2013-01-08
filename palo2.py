@@ -23,6 +23,10 @@ output = open(folder+'palo_combs.txt', "w")
 total = float(len(gene_list))
 progress=0.0
 numberofgenes = 0
+file2 = open(folder+'/unprocessed_genes.txt', "a")
+file2.close()
+
+
 print 'Starting calculations'
 for geneId in gene_list:
     numberofgenes = numberofgenes + 1
