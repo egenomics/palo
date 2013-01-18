@@ -22,10 +22,11 @@ def calc_prots(gene, species, homologs):
             best = ls
             proteins_palo = i
     return names[proteins_palo]
-
+    
 def cartesian(arrays, out=None):
     arrays = [np.asarray(x) for x in arrays]
-    dtype = arrays[0].dtype
+    #dtype = arrays[1].dtype To automatically gather the limit of characters of the array
+    dtype='|S18' #This is the default type for ENSEMBL ID's
     n = np.prod([x.size for x in arrays])
     if out is None:
         out = np.zeros([n, len(arrays)], dtype=dtype)

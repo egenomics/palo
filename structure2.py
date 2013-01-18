@@ -55,4 +55,3 @@ def homo_load(gene_list, folder):
 		homo_load[line[0]]=line
 		gene_list.append(line[0])
 	return homo_load, gene_list
-	return sp_copy
