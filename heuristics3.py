@@ -13,7 +13,7 @@ def calc_prots(gene, species, homologs):
             candidates_name[index].append(species.genes[homologs[gene][index]].proteins[prot].name)
     #Creating the possible combinations and store the lists of lengths in vector r
     items=cartesian(candidates_len)
-    names=cartesian(candidates_name)
+    names=cartesian2(candidates_name)
     best = np.inf
     proteins_palo = None
     for i,item in enumerate(items):
@@ -25,8 +25,21 @@ def calc_prots(gene, species, homologs):
     
 def cartesian(arrays, out=None):
     arrays = [np.asarray(x) for x in arrays]
-    #dtype = arrays[1].dtype To automatically gather the limit of characters of the array
-    dtype='|S18' #This is the default type for ENSEMBL ID's
+    dtype = arrays[0].dtype
+    n = np.prod([x.size for x in arrays])
+    if out is None:
+        out = np.zeros([n, len(arrays)], dtype=dtype)
+    m = n / arrays[0].size
+    out[:,0] = np.repeat(arrays[0], m)
+    if arrays[1:]:
+        cartesian(arrays[1:], out=out[0:m,1:])
+        for j in xrange(1, arrays[0].size):
+            out[j*m:(j+1)*m,1:] = out[0:m,1:]
+    return out
+    
+def cartesian2(arrays, out=None):
+    arrays = [np.asarray(x) for x in arrays]
+    dtype = '|S18'
     n = np.prod([x.size for x in arrays])
     if out is None:
         out = np.zeros([n, len(arrays)], dtype=dtype)
